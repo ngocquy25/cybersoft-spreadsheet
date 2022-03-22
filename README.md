@@ -1,7 +1,7 @@
 # cybersoft-spreadsheet
-Upsert data from spreadsheet to PostgreSQL
+Upsert datato PostgreSQL
 
-### Upsert .csv files to database
+### Upload .csv files to database
 `node csv.js`
 
 ### Upsert data directly from spreadsheet to database
