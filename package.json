@@ -1,0 +1,26 @@
+{
+  "name": "cybersoft-spreadsheet",
+  "version": "1.0.0",
+  "description": "Upsert data from spreadsheet to PostgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "fast-csv": "^4.3.6",
+    "googleapis": "^97.0.0",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngocquy25/cybersoft-spreadsheet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ngocquy25/cybersoft-spreadsheet/issues"
+  },
+  "homepage": "https://github.com/ngocquy25/cybersoft-spreadsheet#readme"
+}

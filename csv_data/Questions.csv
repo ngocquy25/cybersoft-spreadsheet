@@ -1,0 +1,43 @@
+ID,Name,Problem,Input format,Output format,Explanation,Constraint Input,Constraint Output,Constraint Time,Sample input,Sample output,Level
+21,Unique Number,"Given an array of integers in which every numbers appears twice except for one, your taks is to find that unique element.",array.integer nums,Integer,"For arr = [19, 17, 19, 68, 68], the output should be uniqueNumber(arr) = 17.","1 ≤ nums.length < 104
+-109 ≤ nums[i] ≤ 109",Return an integer.,1 second,"[19, 17, 19, 68, 68]",17,easy
+22,Check Number,"Given a string s containing characters and numbers, check to see if s is represented as a decimal integer or not. Returns 1 if true, -1 if false.",String str,Integer,"For s = ""a123""  then checkNumber(s) = false.
+Explanation: ""a123"" cannot be represented as a decimal integer.",str.Length ≤ 50,"Return 1 if s is represented as a decimal integer, -1 otherwise.","0.5 seconds for C++
+3 seconds for Java
+4 seconds for Python and JavaScript",1365,1,easy
+23,Upper Case,"Given a string str containing the name of a function, each single word is space-separated. Return the function name according to the UpperCase rule - Every single word must be capitalized first.",String str,String,"For str = ""hello case"" then upper_case(str) = ""HelloCase""
+For str = ""camel case word"" then upper_case(str) = ""CamelCaseWord""",0 < str.length ≤ 10^6,The function name follows the UpperCase principle.,"0.5 seconds for C++
+3 seconds for Java
+4 seconds for  Python and JavaScript",test case,TestCase,easy
+24,Check Max,Given a string str. Find the character which has the greatest decimal value in str (in ASCII table) and return that decimal value.,String str,Integer,"For s1 = ""abc"", the output should be checkMax(s1)= 99.
+Because 'c' has the greatest decimal value in s1 and the decimal value of 'c' is 99.",1 ≤ str.length ≤ 20000,Return the greatest decimal value.,"0.1 seconds for C++
+0.6 seconds for Java
+0.8 seconds for Python and JavaScript",abc,99,easy
+71,Check Special Number,"A number is a special number when the digits in it are not duplicated, for example 123, 3127, 4897 are special numbers.
+
+Given a positive integer n, check if n is a special number or not. Return true if it is, and false otherwise",Long n,Bool,"For n = 123 then checkSpecialNumber(n) = true.
+
+For n = 112 then checkSpecialNumber(n) = false.",0 ≤ n ≤ 1015,"Return true if it is a special number, and false otherwise.","0.5s for C++, 3s for Java, 4s for Python and JavaScript",123,1,easy
+72,Object,"Create object with key: key1, key2, akey, bkey. And data is 1, 2, ""abc"", ""mno""",Void,Object,"Return object example {
+key1: 1, 
+key2: 2, 
+akey: ""abc"", 
+bkey: ""mno""
+}",,"""Return object with any order of key""",,,"{
+key1: 1, 
+key2: 2, 
+akey: ""abc"", 
+bkey: ""mno""
+}",easy
+81,Rectangular,You have a rectangular prism with the integer side lengths and you know the areas of 3 faces that share the same vertice. Your task is to calculate the sum of the length of the sides of the rectangular prism.,"Integer s1, s2, s3",Integer,"For s1 = 1, s2 = 1, s3 = 1, the output should be rectangular(s1, s2, s3) = 12.
+3 faces of the rectangular have the same area = 1 so the lengths of all sides of the rectangular are 1. The rectangular has 12 sides so the answer is 12. ","Areas of the three face that share the same vertice.
+(1 ≤ s1, s2, s3 ≤ 10^4)",The sum of the length of the sides of the rectangular prism.,0.5s,"1,1,1",12,medium
+82,Sum of Odd Numbers,"You're given two integer a and b (b is larger than a).
+Return the sum of odd numbers between them (not include a and b).","Integer a, b",Integer,"For a = 3 and b = 9, the output should be sumOfOddNumbers(a,b) = 12.
+There are only 2 odd numbers 5 and 7 between 3 and 7, the sum of these numbers is 5 + 7 = 12","-1 < a < 1e8
+0 < b < 1e8 + 1",Return the answer modulo 10000007,0.5s,"3,5",0,medium
+83,"
+Disappeared Numbers","Given a sequence of positive integers a with values in range 1...n ( n is length of sequence ). Unfortunately, some values of sequence disappeared, instead there are some values that appear multiple times. Your task is to determine values disappeared in ascending order.",Array.Integer a,Array.Integer,"For a = [3, 4, 2, 1, 7, 7, 4] the output will be disappeared_numbers(a) = [5, 6]
+Explain:
+- The length of sequence is 7, so values must be in range [1, 7]
+- So values disappeared are 5, 6",0 ≤ a.size ≤ 104,None,"0.1s for C++, 0.6s for Java and C#, 0.8s for Python, Go and JavaScript.","[3, 4, 2, 1, 7, 7, 4]","[5, 6]",easy

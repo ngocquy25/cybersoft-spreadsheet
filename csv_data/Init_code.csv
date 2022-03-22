@@ -1,0 +1,415 @@
+QuestionsID,Language,TLE (milliseconds),Base code,Function,Answer
+21,cpp,1000,"#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+__function__
+
+int main(int argc, char** argv) {
+    vector<int> param = {__test_case__};
+    cout << uniqueNumber(param);
+    return 0;
+}","int uniqueNumber(vector<int> arr) {
+}","int uniqueNumber(vector<int> arr) {
+    sort(arr.begin(), arr.end());
+    for (int i = 0; i < arr.size() - 1; i++) {
+        if (arr[i] == arr[i+1]) {
+            i++;
+        }
+        else return arr[i];
+    }
+}"
+21,java,1000,"import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+public class Solution {
+    public static __function__
+    public static void main(String[] args) {
+        int[] param = {__test_case__};
+        System.out.println(uniqueNumber(param));
+    }
+}","int uniqueNumber(int[] arr) {
+}","int uniqueNumber(int[] arr) {
+	Arrays.sort(arr);
+	int result = 0;
+	for(int i = 0; i < arr.length; i += 2) {
+		if (arr[i] != arr[i + 1]) {
+			result = arr[i];
+			break;
+		}
+	}
+	return result;
+}"
+21,js,1000,"__function__
+console.log(uniqueNumber([__test_case__]))","function uniqueNumber(arr) {
+}","function uniqueNumber(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr.indexOf(arr[i]) == arr.lastIndexOf(arr[i])) return arr[i]
+    }
+}"
+21,py,1000,"__function__
+print(uniqueNumber([__test_case__]))",def uniqueNumber(arr):,"def uniqueNumber(arr):
+	for x in arr:
+		if arr.count(x) == 1:
+			return x"
+22,cpp,500,"#include <iostream>
+
+using namespace std;
+
+__function__
+
+int main(int argc, char** argv) {
+    cout << checkNumber(""__test_case__"");
+    return 0;
+}","int checkNumber(string s) {
+}","int checkNumber(string s) {
+    if (s == """") return -1;
+    if (s[0] == ''-'') {
+        for (int i = 1; i < s.size(); i++) {
+            if (!isdigit(s[i])) return -1;
+        }
+        return 1;
+    }
+    else {
+        for (char c : s) {
+            if (!isdigit(c)) return -1;
+        }
+        return 1;
+    }
+}"
+22,java,3000,"import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+public class Solution {
+    public static __function__
+    public static void main(String[] args) {
+        System.out.println(checkNumber(""__test_case__""));
+    }
+}","int checkNumber(String s) {
+}","int checkNumber(String s) {
+    return s.matches(""^[-\\d]+$"") ?  1 : -1;
+}"
+22,js,4000,"__function__
+console.log(checkNumber(""__test_case__""))","function checkNumber(s) {
+}","function checkNumber(s) {
+    return !Number(s) ? -1 : 1
+}"
+22,py,4000,"__function__
+print(checkNumber(""__test_case__""))",def checkNumber(s):,"def checkNumber(s):
+	try:
+    	float(s)
+    	return 1
+    except:
+    	return -1"
+23,cpp,500,"#include <iostream>
+
+using namespace std;
+
+__function__
+
+int main(int argc, char** argv){
+    cout << upperCase(""__test_case__"");
+    return 0;
+}","string upperCase(string string) {
+}","string upperCase(string strings) {
+    string str = """";
+    if(islower(strings[0])) str += toupper(strings[0]);
+    for(int i = 1; i < strings.length(); i++){
+        if(strings[i] == '' '') continue;
+        else if(strings[i-1] == '' '' && islower(strings[i]))
+                str += toupper(strings[i]);
+        else str += strings[i];
+    }
+    return str;
+}"
+23,java,3000,"import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+public class Solution {
+    public static __function__
+	public static void main(String[] args) {
+		System.out.println(upperCase(""__test_case__""));
+	}
+}","String upperCase(String string) {
+}","String upperCase(String string) {
+	string = string.trim();
+	if(string.isEmpty()) return string;
+	String[] arr = string.split("" "");
+	String result = """";
+	for(int i = 0; i < arr.length; i++) {
+		arr[i] = arr[i].substring(0,1).toUpperCase() + arr[i].substring(1).toLowerCase();
+		result += arr[i];
+	}
+	return result;
+}"
+23,js,4000,"__function__
+console.log(upperCase(""__test_case__""));","function upperCase(string) {
+}","function upperCase(string) {
+    return string
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (w) {
+    return w[0].toUpperCase() + w.slice(1).toLowerCase();
+    })
+    .replace(/\s+/g, """");
+}"
+23,py,4000,"__function__
+print (upper_case(""__test_case__""))",def upper_case(string):,"def upper_case(string):
+	return string.title().replace('' '', '''')"
+24,cpp,100,"#include <iostream>
+
+using namespace std;
+
+__function__
+
+int main(int argc, char** argv) {
+    cout << checkMax(""__test_case__"");
+    return 0;
+}","int checkMax(string str) {
+}","int checkMax(string str) {
+    char answer = str[0];
+    for (int i = 1; i < str.size(); i++)
+    if (str[i] > answer) answer = str[i];
+    return answer;
+}"
+24,java,600,"import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+public class Solution {
+    public static __function__
+	public static void main(String[] args) {
+		System.out.println(checkMax(""__test_case__""));
+	}
+}","int checkMax(String str) {
+}","int checkMax(String str) {
+	char max = str.charAt(0);
+	for (int i = 1; i < str.length(); i++) {
+		if (str.charAt(i) > max) {
+			max = str.charAt(i);
+		}
+	}
+	return (int)max;
+}"
+24,js,800,"__function__
+console.log(checkMax(""__test_case__""))","function checkMax(str) {
+}","function checkMax(str) {
+    let max = str.charCodeAt(0);
+    for (let i = 1; i < str.length; i++) {
+        if (str.charCodeAt(i) > max) {
+            max = str.charCodeAt(i);
+        }
+    }
+    return max;
+}"
+24,py,800,"__function__
+print(checkMax(""__test_case__""))",def checkMax(str):,"def checkMax(str1):
+	lst = list(str1)
+	ascii = []
+	for x in lst:
+    	ascii.append(ord(x))
+	return max(ascii)"
+71,,,,,
+81,cpp,500,"#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+__function__
+
+int main() {
+    cout << rectangular(__test_case__);
+    return 0;
+}","int rectangular(int s1, int s2, int s3) {
+}","int rectangular(int s1, int s2, int s3) {
+    int x = sqrt(s1*s2/s3);
+    int y = sqrt(s2*s3/s1);
+    int z = sqrt(s3*s1/s2);
+    return (4*(x+y+z));
+}"
+81,java,3000,"import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+class Solution {
+    public static __function__
+    public static void main(String[] args) {
+        System.out.println(rectangular(__test_case__)); 
+    }
+}","int rectangular(int s1, int s2, int s3) {
+}","int rectangular(int s1, int s2, int s3) {
+    int x = (int) Math.sqrt(s1*s2/s3);
+    int y = (int) Math.sqrt(s2*s3/s1);
+    int z = (int) Math.sqrt(s3*s1/s2);
+    return (4*(x+y+z));
+}"
+81,js,4000,"__function__
+console.log(rectangular(__test_case__));","function rectangular(s1,s2,s3) {
+}","function rectangular(s1,s2,s3){
+    let d,c,r;
+    c = Math.sqrt(s1*s2/s3);
+    d = s1/c;
+    r = s3*c/s1;
+    return (c+d+r) * 4;
+}"
+81,py,4000,"import math
+
+__function__
+print(rectangular(__test_case__))","def rectangular(s1,s2,s3):","def rectangular(s1,s2,s3):
+    a = math.sqrt((s1*s2)/s3)
+    b = s2/a
+    c = s3/b
+    return (int) (a*4 + b*4 + c*4)"
+82,cpp,500,"#include <iostream>
+
+using namespace std;
+
+__function__
+
+int main() {
+    cout << sumOfOddNumbers(__test_case__);
+    return 0;
+}","int sumOfOddNumbers(int a, int b) {
+}","int sumOfOddNumbers(int a, int b) { 
+    if (a >= b) {
+        return 0;
+    }
+    long sum = 0;
+    for (int i = a + 1; i < b; i++) {
+        if (i % 2 == 1) {
+            sum += i;
+        }
+    }
+    return sum % 10000007;
+}"
+82,java,3000,"import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+class Solution {
+    public static __function__
+    public static void main(String[] args) {
+        System.out.println(sumOfOddNumbers(__test_case__)); 
+    }
+}","int sumOfOddNumbers(int a, int b) {
+}","int sumOfOddNumbers(int a, int b) {
+    if(b - a < 3){
+        return 0;
+    }
+    int sum= 0;
+    for(int i = a + 1; i < b; i++){
+        if(i % 2 != 0){
+            sum = sum + i;
+        }
+    }
+    return sum % 10000007;
+}"
+82,js,4000,"__function__
+console.log(sumOfOddNumbers(__test_case__));","function sumOfOddNumbers(a,b) {
+}","function sumOfOddNumbers(a,b) {
+    let result = 0;
+    for(let i = a + 1; i < b; i++) {
+        if(i % 2 != 0) {
+            result += i;
+            result %= 10000007;
+        }    
+    }
+    return result;
+}"
+82,py,4000,"__function__    
+print(sumOfOddNumbers(__test_case__))","def sumOfOddNumbers(a,b):","def sumOfOddNumbers(a,b):
+    total = 0
+    for i in range (a+1, b):
+        if i%2 != 0:
+            total += i
+    return total%10000007"
+83,cpp,100,"#include <iostream>
+#include <vector>
+#include <set>
+#include <algorithm>
+
+using namespace std;
+
+__function__
+
+void print_vector(std::vector<int> const &input) {
+    cout << '[';
+    for (int i = 0; i < input.size(); i++) {
+        cout << input.at(i);
+        if (i < input.size() - 1) cout << "", "";
+    }
+    cout << ']';
+}
+
+int main() {
+    vector<int> a = {__test_case__};
+    print_vector(disappearedNumbers(a));
+    return 0;
+}","vector<int> disappearedNumbers(vector<int> a) {
+}","vector<int> disappearedNumbers(vector<int> a) {
+    set<int> se;
+    for (int x : a) se.insert(x);
+    vector<int> ans;
+    for (int i = 1; i <= a.size(); i++) {
+        if (!se.count(i)) ans.push_back(i);
+    }
+    return ans;
+}"
+83,java,600,"import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+class Solution {
+    public static __function__
+    public static void main(String[] args) {
+        int[] a = {__test_case__};
+        System.out.println(Arrays.toString(disappearedNumbers(a))); 
+    }
+}","int[] disappearedNumbers(int[] a) {
+}","int[] disappearedNumbers(int[] a) {
+    ArrayList<Integer> arr = new ArrayList<Integer>();
+    for (int i = 1; i <= a.length; i++) {
+        boolean disappeared = true;
+        for (int j = 0; j < a.length; j++){
+            if (a[j] == i) disappeared = false;
+        }
+        if (disappeared) {
+            arr.add(i);
+        }
+    }
+    int[] res = new int[arr.size()];
+    for (int i = 0; i < arr.size(); i++) {
+        res[i] = arr.get(i);
+    }
+    return res;
+}"
+83,js,800,"__function__
+console.log(""[""+disappearedNumbers([__test_case__]).join("", "")+""]"");","function disappearedNumbers(a) {
+}","function disappearedNumbers(a) {
+    var resultArr = []
+    var numberMax = a.length
+    for(var i = 1; i <= numberMax; i++) {
+        if(!a.includes(i))
+            resultArr.push(i)
+    }
+    return resultArr
+}"
+83,py,800,"__function__    
+print(disappeared_numbers([__test_case__]))",def disappeared_numbers(a):,"def disappeared_numbers(a):
+    return sorted(list(set([i for i in range(1, len(a) + 1)]) - set(a)))"
+72,java,800,,,
+72,js,800,"__function__    
+console.log(createObject())","function createObject () {
+}","function createObject () {
+    const object = {
+        key1: 1, 
+        key2: 2, 
+        akey: ""abc"",
+        bkey: ""mno""
+    }
+    return object
+}"
+72,py,800,,,
