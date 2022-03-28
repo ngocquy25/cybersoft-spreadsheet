@@ -3,24 +3,24 @@ const { google } = require("googleapis");
 const { Client } = require('pg');
 
 
-const query_question = "INSERT INTO problem (question_id, question_title, problem, \
-    input_format, output_format, explanation, \
-    constraint_input, constraint_output, constraint_time, \
+const query_question = "INSERT INTO problem (question_id, input_format, output_format, \
     sample_input, sample_output, _level) \
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) \
-    ON CONFLICT (question_id) DO UPDATE SET \
-        question_title=$2, problem=$3, \
-        input_format=$4, output_format=$5, explanation=$6, \
-        constraint_input=$7, constraint_output=$8, constraint_time=$9, \
-        sample_input=$10, sample_output=$11, _level=$12";
+    VALUES ($1, $2, $3, $4, $5, $6) \
+    ON CONFLICT (question_id) DO NOTHING";
+
+const query_question_detail = "INSERT INTO problem_detail (question_id, locale, question_title, \
+    problem, explanation, \
+    constraint_input, constraint_output, constraint_time) \
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8) \
+    ON CONFLICT (question_id, locale) DO NOTHING";
 
 const query_testcase = "INSERT INTO testcase (question_id, testcase_id, _input, _output) \
     VALUES ($1, $2, $3, $4) \
-    ON CONFLICT (question_id, testcase_id) DO UPDATE SET _input=$3, _output=$4";
+    ON CONFLICT (question_id, testcase_id) DO NOTHING";
 
 const query_initcode = "INSERT INTO init_code (question_id, _language, tle, \
     base_code, _function, _answer) VALUES ($1, $2, $3, $4, $5, $6) \
-    ON CONFLICT (question_id, _language) DO UPDATE SET tle=$3, base_code=$4, _function=$5, _answer=$6";
+    ON CONFLICT (question_id, _language) DO NOTHING";
 
 const pool = new Client({
     user: 'rskcxehdjtxnnh',
@@ -69,6 +69,13 @@ app.get("/", async (req, res) => {
         range: "Questions"
     });
 
+    // Get rows from Questions_detail sheet
+    const getRowQuestionsDetail = await googleSheets.spreadsheets.values.get({
+        auth,
+        spreadsheetId,
+        range: "Questions_detail"
+    });
+
     // Get rows from Testcases sheet
     const getRowTestcases = await googleSheets.spreadsheets.values.get({
         auth,
@@ -84,20 +91,22 @@ app.get("/", async (req, res) => {
     });
 
     let questions = getRowQuestions.data.values;
+    let questionsDetail = getRowQuestionsDetail.data.values;
     let testcases = getRowTestcases.data.values;
     let initcodes = getRowInitcodes.data.values;
 
     // remove the first row (header)
     questions.shift();
+    questionsDetail.shift();
     testcases.shift();
     initcodes.shift();
 
-    // upsert problem table
+    // upsert problem table on db
     let count = 1;
     questions.forEach(async (row, index, array) => {
         if (row.length > 1){
-            if (row.length < 12) {
-                for (let i = row.length; i<12; i++) {
+            if (row.length < 6) {
+                for (let i = row.length; i<6; i++) {
                     row.push(null);
                 }
             }
@@ -107,6 +116,27 @@ app.get("/", async (req, res) => {
                     console.log(row);
                 } else {
                     console.log(`Questions row ${count++} is upserted!`);
+                    if (index === array.length - 1) console.log('🤟 🤟 🤟 🤟 🤟 🤟');
+                }
+            });
+        }
+    });
+
+    // upsert problem_detail table on db
+    let count3 = 1;
+    questionsDetail.forEach(async (row, index, array) => {
+        if (row.length > 1){
+            if (row.length < 8) {
+                for (let i = row.length; i<8; i++) {
+                    row.push(null);
+                }
+            }
+            await pool.query(query_question_detail, row, (err, res) => {
+                if (err) {
+                    console.log(err.stack);
+                    console.log(row);
+                } else {
+                    console.log(`Questions_detail row ${count3++} is upserted!`);
                     if (index === array.length - 1) console.log('🤟 🤟 🤟 🤟 🤟 🤟');
                 }
             });
