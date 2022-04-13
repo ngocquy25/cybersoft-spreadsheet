@@ -184,6 +184,34 @@ app.get("/", async (req, res) => {
             });
         }
     });
+
+    // Write row(s) to spreadsheet
+    await googleSheets.spreadsheets.values.append({
+        auth,
+        spreadsheetId,
+        range: "Questions!A:F",
+        valueInputOption: "USER_ENTERED",
+        resource: {
+            values: [
+                ["Id", "Input_format", "Output_format", "Sample_input", "Sample_output", "Level"],
+                ["", "", "", "", "", ""]            
+            ],
+        },
+    });
+
+    // Update row(s) in spreadsheet
+    await googleSheets.spreadsheets.values.update({
+        auth,
+        spreadsheetId,
+        range: "Questions!A" + index + ":F" + index,    // Update index row
+        valueInputOption: "USER_ENTERED",
+        resource: {
+            values: [
+                ["Id", "Input_format", "Output_format", "Sample_input", "Sample_output", "Level"],
+                ["", "", "", "", "", ""]            
+            ],
+        },
+    });
 })
 
 const PORT = process.env.PORT || 3001;
